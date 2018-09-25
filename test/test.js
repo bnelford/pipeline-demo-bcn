@@ -1,7 +1,5 @@
 var request = require('supertest');
 
-
-
 describe('Run unit tests in memory',function() {
     var server;
     beforeEach(function() {
