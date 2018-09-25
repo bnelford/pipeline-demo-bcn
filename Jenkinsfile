@@ -17,7 +17,9 @@ pipeline {
             }
         }
         stage('integration tests') {
-            sh 'npm test integration-tests/integrationtests.js'
+            steps {
+                sh 'npm test integration-tests/integrationtests.js'
+            }
         }
     }
     post {
