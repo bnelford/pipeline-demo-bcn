@@ -6,5 +6,10 @@ pipeline {
                 sh 'npm test'
             }
         }
+        stage('Package') {
+            steps {
+                sh 'docker build -t bnelford/marco-polo-test .'
+            }
+        }
     }
 }
