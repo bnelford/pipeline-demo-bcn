@@ -16,9 +16,14 @@ pipeline {
                 sh 'docker run -d --name marco-polo -p 3000:3000 bnelford/marco-polo-test:latest'
             }
         }
+        stage('integration tests') {
+            sh 'npm test integration-tests/integrationtests.js'
+        }
     }
     post {
-        sh 'docker kill marco-polo'
-        sh 'docker rm marco-polo'
+        cleanup {
+            sh 'docker kill marco-polo'
+            sh 'docker rm marco-polo'
+        }
     }
 }
