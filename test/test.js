@@ -14,7 +14,7 @@ describe('Run unit tests in memory',function() {
         request(server)
             .get('/marco')    
             .expect(200)
-            .expect('Polo!', done);
+            .expect('Mickey', done);
     });
     it('should 404 with anything else', function testPath(done){
         request(server)
