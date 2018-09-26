@@ -23,7 +23,9 @@ pipeline {
             }
         }
         stage('proceed with kill?'){
-            input "Finish?"
+            steps {
+                input "Finish?"
+            }
         }
     }
     post {
