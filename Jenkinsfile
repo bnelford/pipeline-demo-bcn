@@ -69,7 +69,7 @@ pipeline {
             sh 'docker kill marco-polo-prod'
             sh 'docker rm marco-polo-dev'
             sh 'docker rm marco-polo-test'
-            sh 'docker rm marco-polo-staging'
+            sh 'docker rm marco-polo-stage'
             sh 'docker rm marco-polo-prod'
         }
     }
