@@ -22,7 +22,7 @@ pipeline {
                 sh 'npm test integration-tests/integrationtests.js'
             }
         }
-        stage('proceed with kill?'){
+        stage('Gate'){
             steps {
                 input "Finish?"
             }
