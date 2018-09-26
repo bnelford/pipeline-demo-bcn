@@ -46,12 +46,10 @@ pipeline {
             }
         }
 
-    agent any
     timeout(time: 5, unit: 'SECONDS') {
         input 'Do you want to proceed to the Deployment?'
     }
 
-    agent any
     stages {
         stage('Deploy Prod') {
             steps {
