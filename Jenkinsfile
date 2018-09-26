@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    node {
         stages {
             stage('Run Unit Tests') {
                 steps {
@@ -46,31 +45,26 @@ pipeline {
                 }
             }
         }
-    }
+
+    agent any
     timeout(time: 5, unit: 'SECONDS') {
         input 'Do you want to proceed to the Deployment?'
     }
-    node {
-        stages {
-            stage('Production Gate'){
-                steps {
-                    input "Finish?"
-                }
+
+    agent any
+    stages {
+        stage('Deploy Prod') {
+            steps {
+                sh 'docker run -d --name marco-polo-prod -p 3000:3000 bnelford/marco-polo-app:latest'
+                sh 'sleep 5'
             }
-            stage('Deploy Prod') {
-                steps {
-                    sh 'docker run -d --name marco-polo-prod -p 3000:3000 bnelford/marco-polo-app:latest'
-                    sh 'sleep 5'
-                }
-            }
-            stage('Run Prod Integration Tests') {
-                steps {
-                    sh 'npm test integration-tests/prod-integrationtests.js'
-                }
+        }
+        stage('Run Prod Integration Tests') {
+            steps {
+                sh 'npm test integration-tests/prod-integrationtests.js'
             }
         }
     }
-    
     post {
         cleanup {
             sh 'docker kill marco-polo-dev'
