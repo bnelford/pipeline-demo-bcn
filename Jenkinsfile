@@ -17,7 +17,7 @@ pipeline {
                 sh 'sleep 5'
             }
         }
-        stage('integration tests') {
+        stage('Run Integration Tests') {
             steps {
                 sh 'npm test integration-tests/integrationtests.js'
             }
