@@ -22,6 +22,9 @@ pipeline {
                 sh 'npm test integration-tests/integrationtests.js'
             }
         }
+        stage('proceed with kill?'){
+            input "Finish?"
+        }
     }
     post {
         cleanup {
