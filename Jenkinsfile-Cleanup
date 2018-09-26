@@ -1,5 +1,12 @@
 pipeline {
     agent any
+    stages {
+        stage ('Dummy Stage') {
+            steps {
+                sh 'echo cleaning up...'
+            }
+        }
+    }
     post {
         cleanup {
             sh 'docker kill marco-polo-dev'
