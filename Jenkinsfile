@@ -8,12 +8,12 @@ pipeline {
         }
         stage('Package') {
             steps {
-                sh 'docker build -t bnelford/marco-polo-test .'
+                sh 'docker build -t bnelford/marco-polo-app .'
             }
         }
         stage('Deploy Dev') {
             steps {
-                sh 'docker run -d --name marco-polo-dev -p 3003:3000 bnelford/marco-polo-test:latest'
+                sh 'docker run -d --name marco-polo-dev -p 3003:3000 bnelford/marco-polo-app:latest'
                 sh 'sleep 5'
             }
         }
@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Deploy Test') {
             steps {
-                sh 'docker run -d --name marco-polo-test -p 3002:3000 bnelford/marco-polo-test:latest'
+                sh 'docker run -d --name marco-polo-test -p 3002:3000 bnelford/marco-polo-app:latest'
                 sh 'sleep 5'
             }
         }
@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Deploy Stage') {
             steps {
-                sh 'docker run -d --name marco-polo-stage -p 3001:3000 bnelford/marco-polo-test:latest'
+                sh 'docker run -d --name marco-polo-stage -p 3001:3000 bnelford/marco-polo-app:latest'
                 sh 'sleep 5'
             }
         }
@@ -51,7 +51,7 @@ pipeline {
         }
         stage('Deploy Prod') {
             steps {
-                sh 'docker run -d --name marco-polo-prod -p 3000:3000 bnelford/marco-polo-test:latest'
+                sh 'docker run -d --name marco-polo-prod -p 3000:3000 bnelford/marco-polo-app:latest'
                 sh 'sleep 5'
             }
         }
