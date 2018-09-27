@@ -8,18 +8,8 @@ pipeline {
         }
     }
     post {
-        always {
-            sh 'docker kill marco-polo-dev'
-            sh 'docker kill marco-polo-test'
-            sh 'docker kill marco-polo-stage'
-            sh 'docker kill marco-polo-prod'
-        }
-        
         cleanup {
-            sh 'docker rm marco-polo-dev'
-            sh 'docker rm marco-polo-test'
-            sh 'docker rm marco-polo-stage'
-            sh 'docker rm marco-polo-prod'
+            sh 'docker rm -f $(docker ps -aqf "name=marco")'
         }
     }
 }
